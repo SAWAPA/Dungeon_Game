@@ -32,7 +32,7 @@ public class Player {
 
         System.out.println("You dealt " + damage + " damage!");
         System.out.println(enemy.toString());
-        System.out.println("====================");
+        System.out.println("==============================");
         System.out.println("Level : " + level);
         System.out.println("EXP : " + exp);
     }

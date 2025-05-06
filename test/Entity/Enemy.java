@@ -15,11 +15,18 @@ public class Enemy {
         this.exp = type.getBaseExp();
     }
 
+    public void attackPlayer(){
+
+    }
+
+
     public int getDamage(int damage){
+        defense -= damage;
         hp -= damage;
 
-        if(hp < 0){
+        if(hp < 0 && defense < 0){
             hp = 0;
+            defense = 0;
         }
 
         return hp;
