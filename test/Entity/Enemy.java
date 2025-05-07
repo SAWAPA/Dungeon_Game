@@ -3,12 +3,14 @@ package test.Entity;
 import test.Enum.EnemyType;
 
 public class Enemy {
+    private String enemyName;
     private int hp;
     private int defense;
     private int exp;
     private EnemyType enemyType;
 
     public Enemy(EnemyType type) {
+        this.enemyName = type.getNameEnemy();
         this.enemyType = type;
         this.hp = type.getBaseHp();
         this.defense = type.getBaseDefense();
@@ -16,17 +18,16 @@ public class Enemy {
     }
 
     public void attackPlayer(){
-
+        
     }
 
-
     public int getDamage(int damage){
-        defense -= damage;
-        hp -= damage;
-
-        if(hp < 0 && defense < 0){
+        if(defense <= 0){
+            hp -= damage;
+        }
+        
+        if(hp < 0){
             hp = 0;
-            defense = 0;
         }
 
         return hp;
@@ -34,6 +35,10 @@ public class Enemy {
 
     public EnemyType type(){
         return enemyType;
+    }
+
+    public String getNameEnemy(){
+        return enemyName;
     }
 
     public int getExp() {
@@ -44,13 +49,26 @@ public class Enemy {
         return defense;
     }
 
+    public int getDefenseDamage(int damage){
+        if(defense > 0){
+            defense -= damage;
+            if(defense < 0){
+                int reminding = -defense;
+                defense = 0;
+                return reminding;
+            }
+            return 0;
+        }
+        return damage;
+    }
+
     public int getHp(){
         return hp;
     }
 
     @Override
     public String toString(){
-        return "Enemy type : " + enemyType + "\nHP : " + hp + 
+        return "Enemy Name : " + enemyName + "\nEnemy type : " + enemyType + "\nHP : " + hp + 
                 "\nDefense : " + defense + "\nEXP : " + exp;
     }
 }

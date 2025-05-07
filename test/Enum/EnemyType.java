@@ -1,19 +1,25 @@
 package test.Enum;
 
 public enum EnemyType {
-    GOBLIN(30, 5, 10),
-    ORC(50, 10, 50),
-    DRAGON(100, 20, 230),
-    BOSS(200, 50, 500);
+    GOBLIN("Goblin", 30, 5, 10),
+    ORC("Orc", 50, 10, 50),
+    DRAGON("Dragon", 100, 20, 230),
+    BOSS("Boss" ,200, 50, 500);
 
+    private final String enemyName;
     private final int baseHp;
     private final int baseDefense;
     private final int baseExp;
 
-    private EnemyType(int hp, int df, int exp){
+    private EnemyType(String name, int hp, int df, int exp){
+        enemyName = name;
         baseHp = hp;
         baseDefense = df;
         baseExp = exp;
+    }
+
+    public String getNameEnemy(){
+        return enemyName;
     }
 
     public int getBaseHp() {

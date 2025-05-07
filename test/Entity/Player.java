@@ -17,17 +17,16 @@ public class Player {
     }
 
     public void attackEnemy(Enemy enemy){
-        int damage = Math.max(0, this.attack - enemy.getDefense());
+        int damage = enemy.getDefenseDamage(attack);
         enemy.getDamage(damage);
 
-        if(enemy.getHp() <= 0){
+        if(enemy.getHp() <= 0 && enemy.getDefense() <= 0){
             exp += enemy.getExp();
         }
 
         if(exp >= 100){
-            exp /= 100;
-            level += exp;
-            exp = 0;
+            level += exp / 100;
+            exp %= 100;
         }
 
         System.out.println("You dealt " + damage + " damage!");
