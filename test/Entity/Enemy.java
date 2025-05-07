@@ -6,6 +6,7 @@ public class Enemy {
     private String enemyName;
     private int hp;
     private int defense;
+    private int attack;
     private int exp;
     private EnemyType enemyType;
 
@@ -14,23 +15,8 @@ public class Enemy {
         this.enemyType = type;
         this.hp = type.getBaseHp();
         this.defense = type.getBaseDefense();
+        this.attack = type.getBaseAttack();
         this.exp = type.getBaseExp();
-    }
-
-    public void attackPlayer(){
-        
-    }
-
-    public int getDamage(int damage){
-        if(defense <= 0){
-            hp -= damage;
-        }
-        
-        if(hp < 0){
-            hp = 0;
-        }
-
-        return hp;
     }
 
     public EnemyType type(){
@@ -47,6 +33,34 @@ public class Enemy {
 
     public int getDefense(){
         return defense;
+    }
+
+    public int getAttack(){
+        return attack;
+    }
+
+    public void attackPlayer(Player player){
+        int damage = player.getDamageDefense(attack);
+        int newHp = player.getDamage(damage);
+
+        if (newHp < 0) newHp = 0;
+
+        player.setHp(newHp);
+
+        System.out.println("Enemy dealt " + damage + " damage to you!");
+        System.out.println("Your HP: " + player.getHp());
+    }
+
+    public int getDamage(int damage){
+        if(defense <= 0){
+            hp -= damage;
+        }
+        
+        if(hp < 0){
+            hp = 0;
+        }
+
+        return hp;
     }
 
     public int getDefenseDamage(int damage){
@@ -68,7 +82,7 @@ public class Enemy {
 
     @Override
     public String toString(){
-        return "Enemy Name : " + enemyName + "\nEnemy type : " + enemyType + "\nHP : " + hp + 
-                "\nDefense : " + defense + "\nEXP : " + exp;
+        return "Enemy Name : " + enemyName + "\nHP : " + hp + 
+                "\nDefense : " + defense +  "\nAttck : " + attack + "\nEXP : " + exp;
     }
 }
