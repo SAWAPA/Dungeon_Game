@@ -49,6 +49,7 @@ public class Enemy {
 
         System.out.println("Enemy dealt " + damage + " damage to you!");
         System.out.println("Your HP: " + player.getHp());
+        System.out.println("Your DF: " + player.getDefense());
     }
 
     public int getDamage(int damage){

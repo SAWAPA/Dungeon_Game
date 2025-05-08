@@ -6,35 +6,47 @@ public class Item {
     private InventoryType type;
     private String itemName;
     private String descriptions;
-    private int itemDamage;
-    private int itemHeal;
-    private int itemShield;
+    private int itemPower;
     private int value;
 
     public Item(){
 
     }
 
-    public Item(String name, String description, int value) {
+    public Item(InventoryType type, String name, String description, int power, int value) {
+        this.type = type;
         this.itemName = name;
         this.descriptions = description;
+        this.itemPower = power;
         this.value = value;
     }
 
-    public String getName() {
+    public InventoryType getType(){
+        return type;
+    }
+
+    public String getName(){
         return itemName;
     }
 
-    public String getDescription() {
+    public String getDescription(){
         return descriptions;
     }
 
-    public int getValue() {
+    public int getValue(){
         return value;
+    }
+
+    public int getPower(){
+        return itemPower;
+    }
+
+    public void decreaseValue(){
+        this.value--;
     }
 
     @Override
     public String toString() {
-        return itemName + " (Value: " + value + ") - " + descriptions;
+        return itemName + " | " + descriptions + " | " + "(Value: " + value + ")";
     }
 }

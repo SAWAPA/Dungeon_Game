@@ -10,11 +10,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Player player = new Player(100, 10, 10);
-        Enemy enemy = new Enemy(EnemyType.GOBLIN);
+        Enemy enemy = new Enemy(EnemyType.DRAGON);
         System.out.println("==============================");
-        Item potion = new Item("Health Potion", "Restore 50 HP", 10);
-        player.addItem(potion);
-        
+
+        Item sword1 = new Item(InventoryType.SWORD, "Excalibur", "Legend Sword", 1000, 10);
+        Item shield1 = new Item(InventoryType.SHIELD, "Iron Shield", "this shield is protect damage from enemy.", 500, 10);
+        Item potion1 = new Item(InventoryType.POTION, "Potion Heal", "Heal your HP", 100, 10);
+
+        player.addItem(sword1);
+        player.addItem(shield1);
+        player.addItem(potion1);
 
         while (true) {
             System.out.println("==============================");
@@ -32,7 +37,7 @@ public class Main {
                     attackTurn(choice, player, enemy);
                     break;
                 case 2:
-                    healPlayer(player, potion, sc);
+                    itemPlayer(player, sc);
                     break;
                 default:
                     break;
@@ -44,7 +49,7 @@ public class Main {
         player.attackEnemy(enemy);
 
         if(enemy.getHp() <= 0){
-            System.out.println( );
+            System.out.println("-ENEMY DIED-");
             System.exit(0);
         }
 
@@ -56,7 +61,7 @@ public class Main {
         }
     }
 
-    public static void healPlayer(Player player, Item dummyItem, Scanner sc){
+    public static void itemPlayer(Player player, Scanner sc){
         player.showInventory();
     
         System.out.print("Choose your inventory item: ");
@@ -64,8 +69,19 @@ public class Main {
     
         if(num > 0 && num <= player.getInventory().size()){  // ตรวจสอบ index
             Item selected = player.getInventory().get(num - 1);  // หยิบไอเทมที่เลือก
-            player.getHeal(selected);
-            System.out.println("Current HP: " + player.getHp());
+
+            if(selected.getType() == InventoryType.SWORD){
+                player.getItemBuffDamage(selected);
+                System.out.println("Current Attack: " + player.getAttack());
+            }
+            else if(selected.getType() == InventoryType.SHIELD){
+                player.getItemShield(selected);
+                System.out.println("Current Defense: " + player.getDefense());
+            }
+            else if(selected.getType() == InventoryType.POTION){
+                player.getHeal(selected);
+                System.out.println("Current HP: " + player.getHp());
+            }
         } else {
             System.out.println("Invalid choice.");
         }
