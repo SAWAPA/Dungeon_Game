@@ -11,25 +11,33 @@ import test.Inventory.Item;
 public class Main {
     public static void main(String[] args) {
         //demo1();
-        demo1();
+        demo2();
     }
 
     public static void demo2(){
-        Backpack chest = new Backpack();
+        Player player = new Player(100, 10, 20); // สร้าง Player ที่มี hp 100, def 10, atk 20
+        Backpack backpack = new Backpack();
+    
         Item potion = new Item(InventoryType.POTION, "Potion", "Heal 20 HP", 20, 2);
-        Item elixir = new Item(InventoryType.POTION, "Elixir", "Restore full HP", 999, 1);
-
-        chest.addItem(potion);
-        chest.addItem(elixir);
-
+        Item elixir = new Item(InventoryType.SWORD, "Yoru", "The best sword 1 of 10", 999, 1);
+    
+        backpack.addItem(potion);
+        backpack.addItem(elixir);
+    
         Scanner sc = new Scanner(System.in);
-        System.out.print("1 : Open Backpack");
+        System.out.print("1 : Open Backpack ");
         int n = sc.nextInt();
-
+    
         if(n == 1){
-            chest.showBackPack();
+            backpack.showBackPack(player);
         }
+    
+        // แสดง HP หลังจากใช้ของ
+        System.out.println("Player HP: " + player.getHp());
+        System.out.println("Player ATT: " + player.getAttack());
+        System.out.println("Player DF: " + player.getDefense());
     }
+    
 
     public static void demo1(){
         Scanner sc = new Scanner(System.in);
