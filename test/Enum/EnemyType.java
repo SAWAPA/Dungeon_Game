@@ -1,10 +1,10 @@
 package test.Enum;
 
 public enum EnemyType {
-    GOBLIN("Goblin", 30, 5, 10, 10),
-    ORC("Orc", 50, 10, 24, 50),
-    DRAGON("Dragon", 100, 20, 55, 230),
-    BOSS("Boss" ,200, 50, 120,  500);
+    GOBLIN("Goblin", 30, 5, 10, 27),
+    ORC("Orc", 100, 10, 24, 120),
+    DRAGON("Dragon", 900, 20, 55, 1100),
+    BOSS("Boss" ,1700, 50, 120,  2000);
 
     private final String enemyName;
     private final int baseHp;

@@ -9,8 +9,9 @@ public class Player {
     private int maxHp;
     private int attack;
     private int defense;
-    private int level = 1;
+    private int level;
     private int exp = 0;
+    private double maxExp = 100.0;
     private ArrayList<Item> inventory = new ArrayList<>();
 
     public Player(){
@@ -92,6 +93,10 @@ public class Player {
         return inventory;
     }
 
+    public double getMaxExp(){
+        return maxExp;
+    }
+
     public int getMaxHp(){
         return maxHp;
     }
@@ -142,24 +147,30 @@ public class Player {
         return damage;
     }
 
-    public void attackEnemy(Enemy enemy){
+    public void attackEnemy(Enemy enemy) {
         int damage = enemy.getDefenseDamage(attack);
         enemy.getDamage(damage);
-
-        if(enemy.getHp() <= 0 && enemy.getDefense() <= 0){
-            exp += enemy.getExp();
-        }
-
-        if(exp >= 100){
-            level += exp / 100;
-            exp %= 100;
-        }
-
+    
         System.out.println("You dealt " + damage + " damage!");
-        System.out.println(enemy.toString());
+        System.out.println(enemy);
+        
+        if (enemy.getHp() <= 0 && enemy.getDefense() <= 0) {
+            int gainedExp = enemy.getExp();
+            exp += gainedExp;
+            System.out.println("You defeated the enemy and gained " + gainedExp + " EXP!");
+    
+            while (exp >= maxExp) {
+                exp -= maxExp;
+                level++;
+                maxExp *= 1.25;
+                System.out.println("Leveled up! New level: " + level);
+            }
+        }
+    
         System.out.println("==============================");
         System.out.println("Level : " + level);
         System.out.println("EXP : " + exp);
+        System.out.printf("Max EXP : %.0f%n", maxExp);
     }
 
     public void addItem(Item item) {
