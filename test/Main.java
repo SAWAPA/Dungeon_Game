@@ -4,10 +4,34 @@ import java.util.Scanner;
 
 import test.Entity.*;
 import test.Enum.*;
+import test.Inventory.Backpack;
+import test.Inventory.Chest;
 import test.Inventory.Item;
 
 public class Main {
     public static void main(String[] args) {
+        //demo1();
+        demo1();
+    }
+
+    public static void demo2(){
+        Backpack chest = new Backpack();
+        Item potion = new Item(InventoryType.POTION, "Potion", "Heal 20 HP", 20, 2);
+        Item elixir = new Item(InventoryType.POTION, "Elixir", "Restore full HP", 999, 1);
+
+        chest.addItem(potion);
+        chest.addItem(elixir);
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("1 : Open Backpack");
+        int n = sc.nextInt();
+
+        if(n == 1){
+            chest.showBackPack();
+        }
+    }
+
+    public static void demo1(){
         Scanner sc = new Scanner(System.in);
         Player player = new Player(100, 10, 10);
         Enemy enemy = new Enemy(EnemyType.BOSS);
@@ -45,6 +69,8 @@ public class Main {
         }
     }
 
+    /*---------------------------------------------------------------------*/
+
     public static void attackTurn(int num, Player player, Enemy enemy){
         player.attackEnemy(enemy);
 
@@ -71,15 +97,15 @@ public class Main {
             Item selected = player.getInventory().get(num - 1);  // หยิบไอเทมที่เลือก
 
             if(selected.getType() == InventoryType.SWORD){
-                player.getItemBuffDamage(selected);
+                player.itemBuffDamage(selected);
                 System.out.println("Current Attack: " + player.getAttack());
             }
             else if(selected.getType() == InventoryType.SHIELD){
-                player.getItemShield(selected);
+                player.itemShield(selected);
                 System.out.println("Current Defense: " + player.getDefense());
             }
             else if(selected.getType() == InventoryType.POTION){
-                player.getHeal(selected);
+                player.potion(selected);
                 System.out.println("Current HP: " + player.getHp());
             }
         } else {

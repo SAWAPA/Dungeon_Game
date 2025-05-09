@@ -2,9 +2,11 @@ package test.Entity;
 
 import java.util.ArrayList;
 
+import test.Interface.Action.*;
+
 import test.Inventory.Item;
 
-public class Player {
+public class Player implements AddItem, Potion, Attack, Shield{
     private int hp;
     private int maxHp;
     private int attack;
@@ -28,65 +30,6 @@ public class Player {
 
     public int getHp(){
         return hp;
-    }
-
-    public int getHeal(Item item) {
-        if (this.hp == this.maxHp) {
-            System.out.println("Can't use Item.");
-            return hp;
-        }
-    
-        this.hp += item.getPower();
-        if (this.hp > this.maxHp) {
-            this.hp = this.maxHp;
-        }
-    
-        item.decreaseValue();
-        if (item.getValue() <= 0) {
-            inventory.remove(item);
-        }
-    
-        System.out.println("==============================");
-        System.out.println("You used: " + item.getName());
-        System.out.println("Remaining: " + item.getValue());
-        System.out.println("==============================");
-    
-        return hp;
-    }
-    
-
-    public int getItemBuffDamage(Item item){
-        this.attack += item.getPower();
-    
-        item.decreaseValue();
-    
-        if(item.getValue() <= 0){
-            inventory.remove(item);
-        }
-    
-        System.out.println("==============================");
-        System.out.println("You used: " + item.getName());
-        System.out.println("Remaining: " + item.getValue());
-        System.out.println("==============================");
-    
-        return attack;
-    }
-    
-
-    public int getItemShield(Item item){
-        this.defense += item.getPower();
-
-        item.decreaseValue();
-    
-        if(item.getValue() <= 0){
-            inventory.remove(item);
-        }
-
-        System.out.println("==============================");
-        System.out.println("You used: " + item.getName());
-        System.out.println("==============================");
-
-        return defense;
     }
 
     public ArrayList<Item> getInventory() {
@@ -173,6 +116,67 @@ public class Player {
         System.out.printf("Max EXP : %.0f%n", maxExp);
     }
 
+    @Override
+    public int potion(Item item) {
+        if (this.hp == this.maxHp) {
+            System.out.println("Can't use Item.");
+            return hp;
+        }
+    
+        this.hp += item.getPower();
+        if (this.hp > this.maxHp) {
+            this.hp = this.maxHp;
+        }
+    
+        item.decreaseValue();
+        if (item.getValue() <= 0) {
+            inventory.remove(item);
+        }
+    
+        System.out.println("==============================");
+        System.out.println("You used: " + item.getName());
+        System.out.println("Remaining: " + item.getValue());
+        System.out.println("==============================");
+    
+        return hp;
+    }
+
+    @Override
+    public int itemBuffDamage(Item item){
+        this.attack += item.getPower();
+    
+        item.decreaseValue();
+    
+        if(item.getValue() <= 0){
+            inventory.remove(item);
+        }
+    
+        System.out.println("==============================");
+        System.out.println("You used: " + item.getName());
+        System.out.println("Remaining: " + item.getValue());
+        System.out.println("==============================");
+    
+        return attack;
+    }
+
+    @Override
+    public int itemShield(Item item){
+        this.defense += item.getPower();
+
+        item.decreaseValue();
+    
+        if(item.getValue() <= 0){
+            inventory.remove(item);
+        }
+
+        System.out.println("==============================");
+        System.out.println("You used: " + item.getName());
+        System.out.println("==============================");
+
+        return defense;
+    }
+
+    @Override
     public void addItem(Item item) {
         inventory.add(item);
         System.out.println("You received: " + item.getName());

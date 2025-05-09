@@ -2,7 +2,7 @@ package test.Inventory;
 
 import test.Enum.InventoryType;
 
-public class Item {
+public class Item{
     private InventoryType type;
     private String itemName;
     private String descriptions;
@@ -48,5 +48,18 @@ public class Item {
     @Override
     public String toString() {
         return itemName + " | " + descriptions + " | " + "(Value: " + value + ")";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item)) return false;
+        Item item = (Item) o;
+        return itemName.equals(item.itemName);
+    }
+
+    @Override
+    public int hashCode() {
+        return itemName.hashCode();
     }
 }
