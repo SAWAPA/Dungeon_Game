@@ -3,7 +3,7 @@ package test.Inventory;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import test.Enum.InventoryType;
+import test.Enum.ItemType;
 import test.Interface.Action.AddItem;
 import test.Entity.Player;
 
@@ -41,15 +41,15 @@ public class Backpack implements AddItem{
         if(num > 0 && num <= backPack.size()){  // ตรวจสอบ index
             Item selected = backPack.get(num - 1);  // หยิบไอเทมจาก Backpack
     
-            if(selected.getItemType() == InventoryType.SWORD){
+            if(selected.getItemType() == ItemType.SWORD){
                 player.itemBuffDamage(selected);
                 System.out.println("Current Attack: " + player.getAttack());
             }
-            else if(selected.getItemType() == InventoryType.SHIELD){
+            else if(selected.getItemType() == ItemType.SHIELD){
                 player.itemShield(selected);
                 System.out.println("Current Defense: " + player.getDefense());
             }
-            else if(selected.getItemType() == InventoryType.POTION){
+            else if(selected.getItemType() == ItemType.POTION){
                 player.potion(selected);
                 System.out.println("Current HP: " + player.getHp());
             }

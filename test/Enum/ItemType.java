@@ -1,5 +1,5 @@
 package test.Enum;
 
-public enum InventoryType {
+public enum ItemType {
     SWORD, SHIELD, POTION
 }
