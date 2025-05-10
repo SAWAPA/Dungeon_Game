@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import test.Interface.Action.AddItem;
+import test.Enum.*;
 
 public class Chest implements AddItem{
     private Map<Item, Integer> items = new HashMap<>();
+    private List<Item> itemList = new ArrayList<>();
+    private RatingType ratingType;
 
-    public Chest() {
-
+    public Chest(RatingType ratingType) {
+        this.ratingType = ratingType;
     }
 
     @Override
@@ -23,11 +26,18 @@ public class Chest implements AddItem{
         }
     }
 
+    //random Item in chest
+    public void openChest(){
+
+    }
+
     public void showItems() {
         int idx = 1;
-        System.out.println("=== Chest Contents ===");
+        System.out.println("=== Chest Type: " + ratingType.name() + " ===");
         for (Map.Entry<Item, Integer> entry : items.entrySet()) {
-            System.out.println(idx + " | " + entry.getKey().getName() + " x" + entry.getValue());
+            Item item = entry.getKey();
+            int qty = entry.getValue();
+            System.out.println(idx + " | " + item.getRatingType() + " | " + item.getItemType().name() + " | " + item.getName() + " x" + qty);
             idx++;
         }
     }
@@ -45,7 +55,8 @@ public class Chest implements AddItem{
 
         // Add 1 piece to backpack
         backpack.addItem(new Item(
-            selectedItem.getType(),
+            selectedItem.getRatingType(),
+            selectedItem.getItemType(),
             selectedItem.getName(),
             selectedItem.getDescription(),
             selectedItem.getPower(),

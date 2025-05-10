@@ -41,15 +41,15 @@ public class Backpack implements AddItem{
         if(num > 0 && num <= backPack.size()){  // ตรวจสอบ index
             Item selected = backPack.get(num - 1);  // หยิบไอเทมจาก Backpack
     
-            if(selected.getType() == InventoryType.SWORD){
+            if(selected.getItemType() == InventoryType.SWORD){
                 player.itemBuffDamage(selected);
                 System.out.println("Current Attack: " + player.getAttack());
             }
-            else if(selected.getType() == InventoryType.SHIELD){
+            else if(selected.getItemType() == InventoryType.SHIELD){
                 player.itemShield(selected);
                 System.out.println("Current Defense: " + player.getDefense());
             }
-            else if(selected.getType() == InventoryType.POTION){
+            else if(selected.getItemType() == InventoryType.POTION){
                 player.potion(selected);
                 System.out.println("Current HP: " + player.getHp());
             }

@@ -1,8 +1,10 @@
 package test.Inventory;
 
 import test.Enum.InventoryType;
+import test.Enum.RatingType;
 
 public class Item{
+    private RatingType rateType;
     private InventoryType type;
     private String itemName;
     private String descriptions;
@@ -13,7 +15,8 @@ public class Item{
 
     }
 
-    public Item(InventoryType type, String name, String description, int power, int value) {
+    public Item(RatingType ratingType, InventoryType type, String name, String description, int power, int value) {
+        this.rateType = ratingType;
         this.type = type;
         this.itemName = name;
         this.descriptions = description;
@@ -21,7 +24,11 @@ public class Item{
         this.value = value;
     }
 
-    public InventoryType getType(){
+    public RatingType getRatingType(){
+        return rateType;
+    }
+
+    public InventoryType getItemType(){
         return type;
     }
 
@@ -47,7 +54,7 @@ public class Item{
 
     @Override
     public String toString() {
-        return itemName + " | " + descriptions + " | " + "(Value: " + value + ")";
+        return rateType + " | " +  itemName + " | " + descriptions + " | " + "(Value: " + value + ")";
     }
 
     @Override

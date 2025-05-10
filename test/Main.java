@@ -16,10 +16,10 @@ public class Main {
 
     public static void demo3(){
         Player player = new Player(100, 10, 20);
-        Chest chest = new Chest();
+        Chest chest = new Chest(RatingType.LEGEND);
         Backpack backpack = new Backpack();
-        Item item1 = new Item(InventoryType.SWORD, "Yoru", "dhasgdhagd", 999, 2);
-        Item item2 = new Item(InventoryType.POTION, "Heal", "dhasgdhagd", 999, 2);
+        Item item1 = new Item(RatingType.LEGEND, InventoryType.SWORD, "Yoru", "dhasgdhagd", 999, 2);
+        Item item2 = new Item(RatingType.NORMAL, InventoryType.POTION, "Heal", "dhasgdhagd", 999, 2);
 
         chest.addItem(item1);
         chest.addItem(item2);
@@ -38,8 +38,8 @@ public class Main {
         Player player = new Player(100, 10, 20);
         Backpack backpack = new Backpack();
     
-        Item potion = new Item(InventoryType.POTION, "Potion", "Heal 20 HP", 20, 2);
-        Item elixir = new Item(InventoryType.SWORD, "Yoru", "The best sword 1 of 10", 999, 1);
+        Item potion = new Item(RatingType.NORMAL, InventoryType.POTION, "Potion", "Heal 20 HP", 20, 2);
+        Item elixir = new Item(RatingType.LEGEND, InventoryType.SWORD, "Yoru", "The best sword 1 of 10", 999, 1);
     
         backpack.addItem(potion);
         backpack.addItem(elixir);
@@ -65,9 +65,9 @@ public class Main {
         Enemy enemy = new Enemy(EnemyType.BOSS);
         System.out.println("==============================");
 
-        Item sword1 = new Item(InventoryType.SWORD, "Excalibur", "Legend Sword", 1000, 10);
-        Item shield1 = new Item(InventoryType.SHIELD, "Iron Shield", "this shield is protect damage from enemy.", 500, 10);
-        Item potion1 = new Item(InventoryType.POTION, "Potion Heal", "Heal your HP", 100, 10);
+        Item sword1 = new Item(RatingType.LEGEND, InventoryType.SWORD, "Excalibur", "Legend Sword", 1000, 10);
+        Item shield1 = new Item(RatingType.EPIC, InventoryType.SHIELD, "Iron Shield", "this shield is protect damage from enemy.", 500, 10);
+        Item potion1 = new Item(RatingType.NORMAL, InventoryType.POTION, "Potion Heal", "Heal your HP", 100, 10);
 
         player.addItem(sword1);
         player.addItem(shield1);
@@ -124,15 +124,15 @@ public class Main {
         if(num > 0 && num <= player.getInventory().size()){  // ตรวจสอบ index
             Item selected = player.getInventory().get(num - 1);  // หยิบไอเทมที่เลือก
 
-            if(selected.getType() == InventoryType.SWORD){
+            if(selected.getItemType() == InventoryType.SWORD){
                 player.itemBuffDamage(selected);
                 System.out.println("Current Attack: " + player.getAttack());
             }
-            else if(selected.getType() == InventoryType.SHIELD){
+            else if(selected.getItemType() == InventoryType.SHIELD){
                 player.itemShield(selected);
                 System.out.println("Current Defense: " + player.getDefense());
             }
-            else if(selected.getType() == InventoryType.POTION){
+            else if(selected.getItemType() == InventoryType.POTION){
                 player.potion(selected);
                 System.out.println("Current HP: " + player.getHp());
             }
