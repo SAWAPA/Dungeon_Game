@@ -11,11 +11,31 @@ import test.Inventory.Item;
 public class Main {
     public static void main(String[] args) {
         //demo1();
-        demo2();
+        demo3();
+    }
+
+    public static void demo3(){
+        Player player = new Player(100, 10, 20);
+        Chest chest = new Chest();
+        Backpack backpack = new Backpack();
+        Item item1 = new Item(InventoryType.SWORD, "Yoru", "dhasgdhagd", 999, 2);
+        Item item2 = new Item(InventoryType.POTION, "Heal", "dhasgdhagd", 999, 2);
+
+        chest.addItem(item1);
+        chest.addItem(item2);
+        chest.showItems();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("choose item from chest to Backpack: ");
+        int choice = sc.nextInt();
+
+        // move item
+        chest.getItems(choice, backpack);
+        backpack.showBackPack(player);
     }
 
     public static void demo2(){
-        Player player = new Player(100, 10, 20); // สร้าง Player ที่มี hp 100, def 10, atk 20
+        Player player = new Player(100, 10, 20);
         Backpack backpack = new Backpack();
     
         Item potion = new Item(InventoryType.POTION, "Potion", "Heal 20 HP", 20, 2);
