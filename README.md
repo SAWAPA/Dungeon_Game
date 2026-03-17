@@ -1,4 +1,4 @@
-# 🏰 Dungeon_Game
+# Dungeon_Game
 
 **Dungeon_Game** is a simple dungeon crawler game written in **Java**.
 
@@ -12,7 +12,7 @@ I use it to improve my skills in:
 
 ---
 
-## 🎯 Project Goals
+## Project Goals
 
 - Practice Java programming through a console-based RPG game
 - Learn how to structure and manage game systems (combat, inventory, items)
@@ -21,14 +21,14 @@ I use it to improve my skills in:
 
 ---
 
-## 🚧 Project Status
+## Project Status
 
 This project is in **early development** stage.  
 Some features are complete, and others are planned for the future.
 
 ---
 
-## 🔧 Features
+## Features
 
 - ✅ Player & Enemy system
 - ✅ Item and Backpack (inventory)
@@ -40,7 +40,7 @@ Some features are complete, and others are planned for the future.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 src/
@@ -53,7 +53,7 @@ src/
     └── Main.java       # Entry point of the game
 ```
 
-## 🚀 How to Run
+## How to Run
 
 1. Make sure you have Java installed
 2. Compile the project:
@@ -62,7 +62,7 @@ src/
 javac -d bin src/test/Main.java 
 ```
 
-## 🚀 Run the project:
+## Run the project:
 
 ```bash
 java -cp bin test.Main
